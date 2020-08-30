@@ -73,6 +73,7 @@
         }
         var map = L.map('map', {zoomControl:true, maxZoom:19, minZoom:12}).fitBounds([[32.05916515867186,34.74964777905958],[32.09199517587914,34.811638848089615]]);
         var hash = new L.Hash(map);
+        
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
         L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
@@ -87,11 +88,9 @@
 
         measureControl.addTo(map);
 
-        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
-        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0].innerHTML = '';
 
-        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
-        .className += ' fas fa-ruler';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0].className += ' fas fa-ruler';
 
         var bounds_group = new L.featureGroup([]);
 
@@ -123,7 +122,8 @@
                 },
                 mouseover: highlightFeature,
             });
-
+            
+            //the details in the popup
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
@@ -134,18 +134,10 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['xcoord'] !== null ? autolinker.link(feature.properties['xcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ycoord'] !== null ? autolinker.link(feature.properties['ycoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['zcoord'] !== null ? autolinker.link(feature.properties['zcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
+                    \
+                        \
+                        \
+                        \
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
@@ -186,6 +178,7 @@
         });
         bounds_group.addLayer(layer_Carob_1);
         map.addLayer(layer_Carob_1);
+        
         function pop_Orange_2(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -205,18 +198,10 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['xcoord'] !== null ? autolinker.link(feature.properties['xcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ycoord'] !== null ? autolinker.link(feature.properties['ycoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['zcoord'] !== null ? autolinker.link(feature.properties['zcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
+                    \
+                        \
+                        \
+                        \
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
@@ -276,18 +261,10 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['xcoord'] !== null ? autolinker.link(feature.properties['xcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ycoord'] !== null ? autolinker.link(feature.properties['ycoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['zcoord'] !== null ? autolinker.link(feature.properties['zcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
+                        \
+                        \
+                        \
+                        \
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
@@ -348,17 +325,10 @@
                         <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['xcoord'] !== null ? autolinker.link(feature.properties['xcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ycoord'] !== null ? autolinker.link(feature.properties['ycoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['zcoord'] !== null ? autolinker.link(feature.properties['zcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
+                        \
+                        \
+                        \
+                        \
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
@@ -419,17 +389,10 @@
                         <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['xcoord'] !== null ? autolinker.link(feature.properties['xcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ycoord'] !== null ? autolinker.link(feature.properties['ycoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['zcoord'] !== null ? autolinker.link(feature.properties['zcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
+                        \
+                        \
+                        \
+                        \
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
@@ -489,18 +452,10 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['xcoord'] !== null ? autolinker.link(feature.properties['xcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ycoord'] !== null ? autolinker.link(feature.properties['ycoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['zcoord'] !== null ? autolinker.link(feature.properties['zcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
+                    \
+                        \
+                        \
+                        \
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
@@ -561,17 +516,10 @@
                         <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['xcoord'] !== null ? autolinker.link(feature.properties['xcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ycoord'] !== null ? autolinker.link(feature.properties['ycoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['zcoord'] !== null ? autolinker.link(feature.properties['zcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
+                        \
+                        \
+                        \
+                        \
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
@@ -631,18 +579,10 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['xcoord'] !== null ? autolinker.link(feature.properties['xcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ycoord'] !== null ? autolinker.link(feature.properties['ycoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['zcoord'] !== null ? autolinker.link(feature.properties['zcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
+                    \
+                        \
+                        \
+                        \
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
@@ -681,8 +621,12 @@
                 return L.circleMarker(latlng, style_Lemon_8_0(feature));
             },
         });
+
         bounds_group.addLayer(layer_Lemon_8);
         map.addLayer(layer_Lemon_8);
+
+
+    
         function pop_Mango_9(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -692,6 +636,7 @@
                 },
                 mouseover: highlightFeature,
             });
+
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
@@ -702,18 +647,10 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['xcoord'] !== null ? autolinker.link(feature.properties['xcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ycoord'] !== null ? autolinker.link(feature.properties['ycoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['zcoord'] !== null ? autolinker.link(feature.properties['zcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
+                    \
+                        \
+                        \
+                        \
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
@@ -773,18 +710,10 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['xcoord'] !== null ? autolinker.link(feature.properties['xcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ycoord'] !== null ? autolinker.link(feature.properties['ycoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['zcoord'] !== null ? autolinker.link(feature.properties['zcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
+                    \
+                        \
+                        \
+                        \
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
@@ -844,18 +773,10 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['xcoord'] !== null ? autolinker.link(feature.properties['xcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ycoord'] !== null ? autolinker.link(feature.properties['ycoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['zcoord'] !== null ? autolinker.link(feature.properties['zcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
+                    \
+                        \
+                        \
+                        \
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
@@ -915,18 +836,10 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['xcoord'] !== null ? autolinker.link(feature.properties['xcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ycoord'] !== null ? autolinker.link(feature.properties['ycoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['zcoord'] !== null ? autolinker.link(feature.properties['zcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
+                    \
+                        \
+                        \
+                        \
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
@@ -986,18 +899,10 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['xcoord'] !== null ? autolinker.link(feature.properties['xcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ycoord'] !== null ? autolinker.link(feature.properties['ycoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['zcoord'] !== null ? autolinker.link(feature.properties['zcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
+                    \
+                        \
+                        \
+                        \
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
@@ -1057,18 +962,10 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['xcoord'] !== null ? autolinker.link(feature.properties['xcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ycoord'] !== null ? autolinker.link(feature.properties['ycoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['zcoord'] !== null ? autolinker.link(feature.properties['zcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
+                    \
+                        \
+                        \
+                        \
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
@@ -1128,18 +1025,10 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['xcoord'] !== null ? autolinker.link(feature.properties['xcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ycoord'] !== null ? autolinker.link(feature.properties['ycoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['zcoord'] !== null ? autolinker.link(feature.properties['zcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
+                    \
+                        \
+                        \
+                        \
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
@@ -1199,18 +1088,10 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['xcoord'] !== null ? autolinker.link(feature.properties['xcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ycoord'] !== null ? autolinker.link(feature.properties['ycoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['zcoord'] !== null ? autolinker.link(feature.properties['zcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
+                    \
+                        \
+                        \
+                        \
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
@@ -1270,18 +1151,10 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['xcoord'] !== null ? autolinker.link(feature.properties['xcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ycoord'] !== null ? autolinker.link(feature.properties['ycoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['zcoord'] !== null ? autolinker.link(feature.properties['zcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
+                    \
+                        \
+                        \
+                        \
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
@@ -1341,18 +1214,10 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['xcoord'] !== null ? autolinker.link(feature.properties['xcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ycoord'] !== null ? autolinker.link(feature.properties['ycoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['zcoord'] !== null ? autolinker.link(feature.properties['zcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
+                    \
+                        \
+                        \
+                        \
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
@@ -1412,18 +1277,10 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['xcoord'] !== null ? autolinker.link(feature.properties['xcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ycoord'] !== null ? autolinker.link(feature.properties['ycoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['zcoord'] !== null ? autolinker.link(feature.properties['zcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
+                    \
+                        \
+                        \
+                        \
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
@@ -1483,18 +1340,10 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['xcoord'] !== null ? autolinker.link(feature.properties['xcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ycoord'] !== null ? autolinker.link(feature.properties['ycoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['zcoord'] !== null ? autolinker.link(feature.properties['zcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
+                    \
+                        \
+                        \
+                        \
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
@@ -1554,21 +1403,10 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['xcoord'] !== null ? autolinker.link(feature.properties['xcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ycoord'] !== null ? autolinker.link(feature.properties['ycoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['zcoord'] !== null ? autolinker.link(feature.properties['zcoord'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Legitimacy'] !== null ? autolinker.link(feature.properties['Legitimacy'].toLocaleString()) : '') + '</td>\
-                    </tr>\
+                    \
+                        \
+                        \
+                        \
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
@@ -1623,6 +1461,8 @@
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
         .title += 'Search for a place';
         setBounds();
+
+        L.control.Layers(layer_Avocado_21, layer_Orange_2, layer_Carob_1).addTo(map);
         </script>
     </body>
 </html>
