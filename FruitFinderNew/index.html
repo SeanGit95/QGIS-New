@@ -10,17 +10,18 @@
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
+        <link rel="stylesheet" href="css/Styles.css">
+
         <style>
-        #map {
-            width: 1362px;
-            height: 852px;
-        }
+            body{background-image: url(images/FruitBackground.jpg);}
         </style>
         <title></title>
     </head>
     <body>
-        <div id="map">
+        <img src="images/FruitFinderLogo.png" alt="FruitFinderLogo" class="center">
+        <div id="map", style="width: 1100px; height: 800px;">
         </div>
+
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
         <script src="js/leaflet.rotatedMarker.js"></script>
@@ -54,6 +55,7 @@
         <script src="data/Tena_20.js"></script>
         <script src="data/Avocado_21.js"></script>
         <script>
+
         var highlightLayer;
         function highlightFeature(e) {
             highlightLayer = e.target;
@@ -69,13 +71,12 @@
               });
             }
         }
-        var map = L.map('map', {
-            zoomControl:true, maxZoom:17, minZoom:5
-        }).fitBounds([[32.05916515867186,34.74964777905958],[32.09199517587914,34.811638848089615]]);
+        var map = L.map('map', {zoomControl:true, maxZoom:19, minZoom:12}).fitBounds([[32.05916515867186,34.74964777905958],[32.09199517587914,34.811638848089615]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
         L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+
         var measureControl = new L.Control.Measure({
             position: 'topleft',
             primaryLengthUnit: 'meters',
@@ -83,12 +84,17 @@
             primaryAreaUnit: 'sqmeters',
             secondaryAreaUnit: 'hectares'
         });
+
         measureControl.addTo(map);
+
         document.getElementsByClassName('leaflet-control-measure-toggle')[0]
         .innerHTML = '';
+
         document.getElementsByClassName('leaflet-control-measure-toggle')[0]
         .className += ' fas fa-ruler';
+
         var bounds_group = new L.featureGroup([]);
+
         function setBounds() {
         }
         map.createPane('pane_OSMStandard_0');
@@ -102,8 +108,12 @@
             minNativeZoom: 0,
             maxNativeZoom: 19
         });
+
+        //adding the OSM layer to the map
         layer_OSMStandard_0;
         map.addLayer(layer_OSMStandard_0);
+
+
         function pop_Carob_1(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -113,6 +123,7 @@
                 },
                 mouseover: highlightFeature,
             });
+
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
@@ -1598,12 +1609,15 @@
         });
         bounds_group.addLayer(layer_Avocado_21);
         map.addLayer(layer_Avocado_21);
+
+
         var osmGeocoder = new L.Control.Geocoder({
             collapsed: true,
             position: 'topleft',
             text: 'Search',
             title: 'Testing'
         }).addTo(map);
+
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
         .className += ' fa fa-search';
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
