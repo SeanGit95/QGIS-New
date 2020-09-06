@@ -23,3 +23,7 @@ img {
     margin-left: auto;
     margin-right: auto;
   }
+
+table{
+  text-align: right;
+}
