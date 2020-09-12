@@ -20,8 +20,14 @@
     <body>
         
         <img src="images/FruitFinderLogo.png" alt="FruitFinderLogo" class="center">
-
-
+        
+        <select class="filter-select" id="filterByType"></select>
+        <select class="filter-select" id="filterByLegit">
+            <option >הכל</option>
+            <option >לא לגיטימי</option>
+            <option >חצי לגיטימי</option>
+            <option >לגיטימי</option>
+        </select>
         <div id="map", style="width: 1100px; height: 800px;">
         </div>
 
@@ -57,6 +63,8 @@
         <script src="data/Tamar_19.js"></script>
         <script src="data/Tena_20.js"></script>
         <script src="data/Avocado_21.js"></script>
+        <!-- filter  -->
+        <script src="./js-filter/index.js"></script>
 
         <script>
         var highlightLayer;
@@ -417,6 +425,7 @@
         map.createPane('pane_Grape_5');
         map.getPane('pane_Grape_5').style.zIndex = 405;
         map.getPane('pane_Grape_5').style['mix-blend-mode'] = 'normal';
+        
         var layer_Grape_5 = new L.geoJson(json_Grape_5, {
             attribution: '',
             interactive: true,
@@ -1207,6 +1216,7 @@
         });
         bounds_group.addLayer(layer_Strawberry_18);
         map.addLayer(layer_Strawberry_18);
+       // map.removeLayer(layer_Strawberry_18);
         function pop_Tamar_19(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -1400,7 +1410,7 @@
         .title += 'Search for a place';
         setBounds();
 
-        L.control.Layers(layer_Avocado_21, layer_Orange_2, layer_Carob_1).addTo(map);
+        L.control.layers(layer_Avocado_21, layer_Orange_2, layer_Carob_1).addTo(map);
         </script>
     </body>
 </html>

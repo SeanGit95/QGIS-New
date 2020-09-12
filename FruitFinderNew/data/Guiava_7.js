@@ -10,3 +10,4 @@ var json_Guiava_7 = {
 { "type": "Feature", "properties": { "fid": "50", "Name": "אלכסנדר פן 4", "description": "גויאבה חצי לגיטימית", "layer": "עצי פרי בתל אביב יפו أشجار فاكهة في تل أبيب يافا Fruit trees in Tel Aviv Yafo בננה, פפאיה, גויאבה, אבוקדו موز, ببايا, جوافة, أفوكادو Banana, Papaya, Guava, Avocado", "xcoord": 3875406.5210102848, "ycoord": 3779451.1039053053, "zcoord": 0.0 }, "geometry": { "type": "Point", "coordinates": [ 34.8133691, 32.122878 ] } }
 ]
 }
+
