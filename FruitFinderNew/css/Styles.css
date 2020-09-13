@@ -27,3 +27,12 @@ img {
 table{
   text-align: right;
 }
+
+.myDiv {
+    border: 2px outset black;
+    background-color: ghostwhite;
+    text-align: center;
+    border-radius: 5px;
+    font-family: "Times New Roman", Times, serif;
+    font-weight: bold;
+}

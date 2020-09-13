@@ -1,93 +1,128 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
-        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
-        <link rel="stylesheet" href="css/leaflet-measure.css">
-        <link rel="stylesheet" href="css/Styles.css">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <style>
-            body{background-image: url(images/FruitBackground.jpg);}
-        </style>
-        <title></title>
-    </head>
-    <body>
-        
-        <img src="images/FruitFinderLogo.png" alt="FruitFinderLogo" class="center">
-        
-        <select class="filter-select" id="filterByType"></select>
-        <select class="filter-select" id="filterByLegit">
-            <option >הכל</option>
-            <option >לא לגיטימי</option>
-            <option >חצי לגיטימי</option>
-            <option >לגיטימי</option>
-        </select>
-        <div id="map", style="width: 1100px; height: 800px;">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/L.Control.Locate.min.css">
+    <link rel="stylesheet" href="css/qgis2web.css">
+    <link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+    <link rel="stylesheet" href="css/leaflet-measure.css">
+    <link rel="stylesheet" href="css/Styles.css">
+    <style>
+        body {
+            background-image: url(images/FruitBackground.jpg);
+        }
+    </style>
+    <title></title>
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10">
+                <img src="images/FruitFinderLogo.png" alt="FruitFinderLogo">
+            </div>
         </div>
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="myDiv">
+                    <h4>Select Fruit:</h4>
+                    <select class="filter-select" id="filterByType"></select>
+                    <br />
+                    <h4>Select Legitemacy:</h4>
+                    <select class="filter-select" id="filterByLegit">
+                        <option>הכל</option>
+                        <option>לא לגיטימי</option>
+                        <option>חצי לגיטימי</option>
+                        <option>לגיטימי</option>
+                    </select>
+                    <br /><br />
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div id="map" , style="width: 1100px; height: 800px;">
 
-        <script src="js/qgis2web_expressions.js"></script>
-        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
-        <script src="js/leaflet.rotatedMarker.js"></script>
-        <script src="js/leaflet.pattern.js"></script>
-        <script src="js/leaflet-hash.js"></script>
-        <script src="js/Autolinker.min.js"></script>
-        <script src="js/rbush.min.js"></script>
-        <script src="js/labelgun.min.js"></script>
-        <script src="js/labels.js"></script>
-        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
-        <script src="js/leaflet-measure.js"></script>
-        <script src="data/Carob_1.js"></script>
-        <script src="data/Orange_2.js"></script>
-        <script src="data/Clementine_3.js"></script>
-        <script src="data/GrapeFruit_4.js"></script>
-        <script src="data/Grape_5.js"></script>
-        <script src="data/GrapeVine_6.js"></script>
-        <script src="data/Guiava_7.js"></script>
-        <script src="data/Lemon_8.js"></script>
-        <script src="data/Mango_9.js"></script>
-        <script src="data/Mishmesh_10.js"></script>
-        <script src="data/Olive_11.js"></script>
-        <script src="data/Papaya_12.js"></script>
-        <script src="data/Passiflora_13.js"></script>
-        <script src="data/Pitango_14.js"></script>
-        <script src="data/Pomegranate_15.js"></script>
-        <script src="data/Sabres_16.js"></script>
-        <script src="data/Sheseq_17.js"></script>
-        <script src="data/Strawberry_18.js"></script>
-        <script src="data/Tamar_19.js"></script>
-        <script src="data/Tena_20.js"></script>
-        <script src="data/Avocado_21.js"></script>
-        <!-- filter  -->
-        <script src="./js-filter/index.js"></script>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <script>
+
+
+
+    <script src="js/qgis2web_expressions.js"></script>
+    <script src="js/leaflet.js"></script>
+    <script src="js/L.Control.Locate.min.js"></script>
+    <script src="js/leaflet.rotatedMarker.js"></script>
+    <script src="js/leaflet.pattern.js"></script>
+    <script src="js/leaflet-hash.js"></script>
+    <script src="js/Autolinker.min.js"></script>
+    <script src="js/rbush.min.js"></script>
+    <script src="js/labelgun.min.js"></script>
+    <script src="js/labels.js"></script>
+    <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+    <script src="js/leaflet-measure.js"></script>
+    <script src="data/Carob_1.js"></script>
+    <script src="data/Orange_2.js"></script>
+    <script src="data/Clementine_3.js"></script>
+    <script src="data/GrapeFruit_4.js"></script>
+    <script src="data/Grape_5.js"></script>
+    <script src="data/GrapeVine_6.js"></script>
+    <script src="data/Guiava_7.js"></script>
+    <script src="data/Lemon_8.js"></script>
+    <script src="data/Mango_9.js"></script>
+    <script src="data/Mishmesh_10.js"></script>
+    <script src="data/Olive_11.js"></script>
+    <script src="data/Papaya_12.js"></script>
+    <script src="data/Passiflora_13.js"></script>
+    <script src="data/Pitango_14.js"></script>
+    <script src="data/Pomegranate_15.js"></script>
+    <script src="data/Sabres_16.js"></script>
+    <script src="data/Sheseq_17.js"></script>
+    <script src="data/Strawberry_18.js"></script>
+    <script src="data/Tamar_19.js"></script>
+    <script src="data/Tena_20.js"></script>
+    <script src="data/Avocado_21.js"></script>
+
+    <!-- filter  -->
+    <script src="./js-filter/index.js"></script>
+
+
+    <script>
         var highlightLayer;
         function highlightFeature(e) {
             highlightLayer = e.target;
 
             if (e.target.feature.geometry.type === 'LineString') {
-              highlightLayer.setStyle({
-                color: '#ffff00',
-              });
+                highlightLayer.setStyle({
+                    color: '#ffff00',
+                });
             } else {
-              highlightLayer.setStyle({
-                fillColor: '#ffff00',
-                fillOpacity: 1
-              });
+                highlightLayer.setStyle({
+                    fillColor: '#ffff00',
+                    fillOpacity: 1
+                });
             }
         }
-        var map = L.map('map', {zoomControl:true, maxZoom:19, minZoom:12}).fitBounds([[32.05916515867186,34.74964777905958],[32.09199517587914,34.811638848089615]]);
+        var map = L.map('map', { zoomControl: true, maxZoom: 19, minZoom: 12 }).fitBounds([[32.05916515867186, 34.74964777905958], [32.09199517587914, 34.811638848089615]]);
         var hash = new L.Hash(map);
-        
+
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
-        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
-        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var autolinker = new Autolinker({ truncate: { length: 30, location: 'smart' } });
+        L.control.locate({ locateOptions: { maxZoom: 19 } }).addTo(map);
 
         var measureControl = new L.Control.Measure({
             position: 'topleft',
@@ -118,17 +153,10 @@
             minNativeZoom: 0,
             maxNativeZoom: 19
         });
-        
+
         //adding the OSM layer to the map
         layer_OSMStandard_0;
         map.addLayer(layer_OSMStandard_0);
-
-
-
-
-
-
-
 
         // Fruit Icons as variables
         var MangoIcon = L.icon({
@@ -139,31 +167,29 @@
         });
 
 
-        
-
         function pop_Carob_1(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (i in e.target._eventParents) {
                         e.target._eventParents[i].resetStyle(e.target);
                     }
                 },
                 mouseover: highlightFeature,
             });
-            
+
             //the details in the popup
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+                            <tr>\
+                                <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                        </table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
         }
 
         function style_Carob_1_0() {
@@ -204,11 +230,11 @@
 
         bounds_group.addLayer(layer_Carob_1);
         map.addLayer(layer_Carob_1);
-        
+
 
         function pop_Orange_2(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (i in e.target._eventParents) {
                         e.target._eventParents[i].resetStyle(e.target);
                     }
@@ -216,17 +242,17 @@
                 mouseover: highlightFeature,
             });
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+                            <tr>\
+                                <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                        </table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
         }
 
         function style_Orange_2_0() {
@@ -267,7 +293,7 @@
         map.addLayer(layer_Orange_2);
         function pop_Clementine_3(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (i in e.target._eventParents) {
                         e.target._eventParents[i].resetStyle(e.target);
                     }
@@ -275,17 +301,17 @@
                 mouseover: highlightFeature,
             });
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+                            <tr>\
+                                <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                        </table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
         }
 
         function style_Clementine_3_0() {
@@ -326,7 +352,7 @@
         map.addLayer(layer_Clementine_3);
         function pop_GrapeFruit_4(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (i in e.target._eventParents) {
                         e.target._eventParents[i].resetStyle(e.target);
                     }
@@ -334,17 +360,17 @@
                 mouseover: highlightFeature,
             });
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+                            <tr>\
+                                <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                        </table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
         }
 
         function style_GrapeFruit_4_0() {
@@ -385,7 +411,7 @@
         map.addLayer(layer_GrapeFruit_4);
         function pop_Grape_5(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (i in e.target._eventParents) {
                         e.target._eventParents[i].resetStyle(e.target);
                     }
@@ -393,17 +419,17 @@
                 mouseover: highlightFeature,
             });
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+                            <tr>\
+                                <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                        </table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
         }
 
         function style_Grape_5_0() {
@@ -425,7 +451,7 @@
         map.createPane('pane_Grape_5');
         map.getPane('pane_Grape_5').style.zIndex = 405;
         map.getPane('pane_Grape_5').style['mix-blend-mode'] = 'normal';
-        
+
         var layer_Grape_5 = new L.geoJson(json_Grape_5, {
             attribution: '',
             interactive: true,
@@ -445,7 +471,7 @@
         map.addLayer(layer_Grape_5);
         function pop_GrapeVine_6(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (i in e.target._eventParents) {
                         e.target._eventParents[i].resetStyle(e.target);
                     }
@@ -453,17 +479,17 @@
                 mouseover: highlightFeature,
             });
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+                            <tr>\
+                                <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                        </table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
         }
 
         function style_GrapeVine_6_0() {
@@ -504,7 +530,7 @@
         map.addLayer(layer_GrapeVine_6);
         function pop_Guiava_7(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (i in e.target._eventParents) {
                         e.target._eventParents[i].resetStyle(e.target);
                     }
@@ -512,17 +538,17 @@
                 mouseover: highlightFeature,
             });
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+                            <tr>\
+                                <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                        </table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
         }
 
         function style_Guiava_7_0() {
@@ -563,7 +589,7 @@
         map.addLayer(layer_Guiava_7);
         function pop_Lemon_8(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (i in e.target._eventParents) {
                         e.target._eventParents[i].resetStyle(e.target);
                     }
@@ -571,17 +597,17 @@
                 mouseover: highlightFeature,
             });
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+                            <tr>\
+                                <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                        </table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
         }
 
         function style_Lemon_8_0() {
@@ -623,10 +649,10 @@
         map.addLayer(layer_Lemon_8);
 
 
-    
+
         function pop_Mango_9(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (i in e.target._eventParents) {
                         e.target._eventParents[i].resetStyle(e.target);
                     }
@@ -635,17 +661,17 @@
             });
 
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+                            <tr>\
+                                <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                        </table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
         }
 
         function style_Mango_9_0() {
@@ -667,7 +693,7 @@
         map.createPane('pane_Mango_9');
         map.getPane('pane_Mango_9').style.zIndex = 409;
         map.getPane('pane_Mango_9').style['mix-blend-mode'] = 'normal';
-        
+
         var layer_Mango_9 = new L.geoJson(json_Mango_9, {
             attribution: '',
             interactive: true,
@@ -687,7 +713,7 @@
         map.addLayer(layer_Mango_9);
         function pop_Mishmesh_10(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (i in e.target._eventParents) {
                         e.target._eventParents[i].resetStyle(e.target);
                     }
@@ -695,17 +721,17 @@
                 mouseover: highlightFeature,
             });
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+                            <tr>\
+                                <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                        </table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
         }
 
         function style_Mishmesh_10_0() {
@@ -746,7 +772,7 @@
         map.addLayer(layer_Mishmesh_10);
         function pop_Olive_11(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (i in e.target._eventParents) {
                         e.target._eventParents[i].resetStyle(e.target);
                     }
@@ -754,17 +780,17 @@
                 mouseover: highlightFeature,
             });
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+                            <tr>\
+                                <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                        </table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
         }
 
         function style_Olive_11_0() {
@@ -805,7 +831,7 @@
         map.addLayer(layer_Olive_11);
         function pop_Papaya_12(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (i in e.target._eventParents) {
                         e.target._eventParents[i].resetStyle(e.target);
                     }
@@ -813,17 +839,17 @@
                 mouseover: highlightFeature,
             });
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+                            <tr>\
+                                <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                        </table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
         }
 
         function style_Papaya_12_0() {
@@ -864,7 +890,7 @@
         map.addLayer(layer_Papaya_12);
         function pop_Passiflora_13(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (i in e.target._eventParents) {
                         e.target._eventParents[i].resetStyle(e.target);
                     }
@@ -872,17 +898,17 @@
                 mouseover: highlightFeature,
             });
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+                            <tr>\
+                                <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                        </table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
         }
 
         function style_Passiflora_13_0() {
@@ -923,7 +949,7 @@
         map.addLayer(layer_Passiflora_13);
         function pop_Pitango_14(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (i in e.target._eventParents) {
                         e.target._eventParents[i].resetStyle(e.target);
                     }
@@ -931,17 +957,17 @@
                 mouseover: highlightFeature,
             });
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+                            <tr>\
+                                <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                        </table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
         }
 
         function style_Pitango_14_0() {
@@ -982,7 +1008,7 @@
         map.addLayer(layer_Pitango_14);
         function pop_Pomegranate_15(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (i in e.target._eventParents) {
                         e.target._eventParents[i].resetStyle(e.target);
                     }
@@ -990,17 +1016,17 @@
                 mouseover: highlightFeature,
             });
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+                            <tr>\
+                                <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                        </table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
         }
 
         function style_Pomegranate_15_0() {
@@ -1041,7 +1067,7 @@
         map.addLayer(layer_Pomegranate_15);
         function pop_Sabres_16(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (i in e.target._eventParents) {
                         e.target._eventParents[i].resetStyle(e.target);
                     }
@@ -1049,17 +1075,17 @@
                 mouseover: highlightFeature,
             });
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+                            <tr>\
+                                <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                        </table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
         }
 
         function style_Sabres_16_0() {
@@ -1100,7 +1126,7 @@
         map.addLayer(layer_Sabres_16);
         function pop_Sheseq_17(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (i in e.target._eventParents) {
                         e.target._eventParents[i].resetStyle(e.target);
                     }
@@ -1108,17 +1134,17 @@
                 mouseover: highlightFeature,
             });
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+                            <tr>\
+                                <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                        </table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
         }
 
         function style_Sheseq_17_0() {
@@ -1159,7 +1185,7 @@
         map.addLayer(layer_Sheseq_17);
         function pop_Strawberry_18(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (i in e.target._eventParents) {
                         e.target._eventParents[i].resetStyle(e.target);
                     }
@@ -1167,17 +1193,17 @@
                 mouseover: highlightFeature,
             });
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+                            <tr>\
+                                <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                        </table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
         }
 
         function style_Strawberry_18_0() {
@@ -1216,10 +1242,10 @@
         });
         bounds_group.addLayer(layer_Strawberry_18);
         map.addLayer(layer_Strawberry_18);
-       // map.removeLayer(layer_Strawberry_18);
+        // map.removeLayer(layer_Strawberry_18);
         function pop_Tamar_19(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (i in e.target._eventParents) {
                         e.target._eventParents[i].resetStyle(e.target);
                     }
@@ -1227,17 +1253,17 @@
                 mouseover: highlightFeature,
             });
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+                            <tr>\
+                                <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                        </table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
         }
 
         function style_Tamar_19_0() {
@@ -1278,7 +1304,7 @@
         map.addLayer(layer_Tamar_19);
         function pop_Tena_20(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (i in e.target._eventParents) {
                         e.target._eventParents[i].resetStyle(e.target);
                     }
@@ -1286,17 +1312,17 @@
                 mouseover: highlightFeature,
             });
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+                            <tr>\
+                                <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                        </table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
         }
 
         function style_Tena_20_0() {
@@ -1315,7 +1341,7 @@
                 interactive: true,
             }
         }
-        
+
         map.createPane('pane_Tena_20');
         map.getPane('pane_Tena_20').style.zIndex = 420;
         map.getPane('pane_Tena_20').style['mix-blend-mode'] = 'normal';
@@ -1338,7 +1364,7 @@
         map.addLayer(layer_Tena_20);
         function pop_Avocado_21(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (i in e.target._eventParents) {
                         e.target._eventParents[i].resetStyle(e.target);
                     }
@@ -1346,17 +1372,17 @@
                 mouseover: highlightFeature,
             });
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+                            <tr>\
+                                <td colspan="2"> <b> ID </b> ' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> מיקום </b>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2"> <b> תיאור </b>' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                        </table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
         }
 
         function style_Avocado_21_0() {
@@ -1405,12 +1431,18 @@
         }).addTo(map);
 
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
-        .className += ' fa fa-search';
+            .className += ' fa fa-search';
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
-        .title += 'Search for a place';
+            .title += 'Search for a place';
         setBounds();
 
         L.control.layers(layer_Avocado_21, layer_Orange_2, layer_Carob_1).addTo(map);
-        </script>
-    </body>
+    </script>
+    <!--Bootstrap!-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
 </html>
