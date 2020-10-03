@@ -15,4 +15,10 @@ router.get('/login', (req,res) =>{
     res.render('login');
 });
 
+    router.get('/logout', (req,res) =>{
+    req.logout();
+    req.session.destroy();
+    res.redirect("/");
+});
+
 module.exports = router;

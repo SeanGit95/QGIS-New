@@ -3,6 +3,7 @@ const path = require('path');
 const mySql = require("mysql");
 const dotEnv = require('dotenv');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
 dotEnv.config({path: './.env'});
 const { request, response } = require("express");
@@ -22,6 +23,13 @@ app.use(express.static(publicDirectory));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(cookieParser());
+
+app.use(session({
+  secret: 'superduperfuk*ngproject',
+  resave: false,
+  saveUninitialized: false,
+ // cookie: { secure: true }
+}))
 
 app.set('view engine', 'hbs');
 
