@@ -3,7 +3,7 @@ const path = require('path');
 const mySql = require("mysql");
 const dotEnv = require('dotenv');
 const cookieParser = require('cookie-parser');
-const session = require('express-session');
+const fs = require('fs');
 
 dotEnv.config({path: './.env'});
 const { request, response } = require("express");
@@ -24,13 +24,6 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(session({
-  secret: 'superduperfuk*ngproject',
-  resave: false,
-  saveUninitialized: false,
- // cookie: { secure: true }
-}))
-
 app.set('view engine', 'hbs');
 
 db.connect ( (error) => {
@@ -46,7 +39,25 @@ db.connect ( (error) => {
 
 //define routes
 app.use('/', require('./routes/pages'));
-app.use('/auth', require('./routes/auth'))
+app.use('/auth', require('./routes/auth'));
+app.use(express.static(__dirname+ '/gis'));
+
+app.get('/roi', function(req, res) {
+    res.sendFile(path.join(__dirname + '/gis/gisWithSearch.html'));
+   // res.writeHead(200,{'Content-Type': 'text/html'});
+    //fs.readFile('./gis/index.html', null, function(error,data) {
+      //  res.write(data);
+        
+    //})
+});
+
+app.get('/home', function(req, res) {
+    res.sendFile(path.join(__dirname + '/gis/index.html'));
+});
+
+app.get('/afterlogin', function(req, res) {
+    res.sendFile(path.join(__dirname + '/gis/gisWithSearch.html'));
+});
 
 app.listen(3001, () =>{
     console.log("server started on poert 3001");

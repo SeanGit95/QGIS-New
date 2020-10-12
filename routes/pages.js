@@ -4,7 +4,7 @@ const router =express.Router();
 
 
 router.get('/', (req,res) =>{
-    res.render('index');
+    res.redirect('home');
 });
 
 router.get('/register', (req,res) =>{
@@ -19,6 +19,10 @@ router.get('/login', (req,res) =>{
     req.logout();
     req.session.destroy();
     res.redirect("/");
+});
+
+router.get('/gis', (req,res) =>{
+    res.redirect('afterlogin');
 });
 
 module.exports = router;

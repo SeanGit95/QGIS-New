@@ -93,7 +93,7 @@ exports.login = async (req,res) =>{
                 }
                 
                 res.cookie('jwt', token, cookieOptions );
-                res.status(200).redirect('/');
+                res.status(200).redirect('/gis');
             }
         })
 
