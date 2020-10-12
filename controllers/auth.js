@@ -17,6 +17,14 @@ exports.register = (req,res) =>{
 
     const {userName, firstName, lastName, email, password, confPassword, mobileNum} = req.body; //get data from form
 
+    if(userName == '' || firstName == '' || lastName == '' || email == '' || password == '' || confPassword == '' || mobileNum == '')
+    {
+        return res.render('register',{
+            message: 'please fill all form'
+        })
+    }
+    else{
+
     //check form data agaist it self and against db
     db.query("SELECT userEmail FROM users where userEmail = ?",[email], async (error, results) =>{ //check that there isnt same email in use
         if(error){
@@ -34,7 +42,7 @@ exports.register = (req,res) =>{
               })
         }
 
-        db.query("SELECT userEmail FROM users where userName = ?",[userName], async (error, results) =>{ //check that there isnt same userName in use
+        db.query("SELECT userName FROM users where userName = ?",[userName], async (error, results) =>{ //check that there isnt same userName in use
             if(error){
                 console.log(error);
             }
@@ -58,6 +66,7 @@ exports.register = (req,res) =>{
             })
         });
     });
+}
 }
 
 exports.login = async (req,res) =>{
